@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<charset lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<style>
+    img {
+  border-radius: 50%;
+}
+
+</style>
+
+</head>
+<body>
+    <div class="wrapper">
+    <form class="form" target="_self" method="get" id="formElem">
+        <label for="name">Name</label>
+        <input class="form" id="name" type="text" name="name"><br>
+        <label for="email">Email</label>
+        <input class="form" id="email" type="email" name="email"><br>
+        <label for="phone">Phone</label>
+        <input id="phone" type="tel" name="phone"><br>
+        <label for="file">Image</label>
+        <input id="file" type="file" name="file"><br>
+        <label for="date">Birthdate</label>
+        <input id="date" type="date" name="date"><br>
+
+        <fieldset>
+            <legend>Gender</legend>
+        <label for="male">Male</label>
+        <input id="male" type="radio" name="gender" value="male"><br>
+        <label for="female">Female</label>
+        <input id="female" type="radio" name="gender" value="female"><br>
+        </fieldset>
+        <div>
+        <label for="address">Address</label>
+        <input id="address" type="text" name="address" size="70"><br>
+    </div>
+    <div>
+        <label for="city">City</label>
+        <input id="city" type="text" name="city"><br>
+    </div>
+    <div>
+        <label for="state">State/Province</label>
+        <input id="state" type="text" name="state"><br>
+    </div>
+    <div>
+        <label for="country">Country</label>
+        <input id="country" type="text" name="country"><br>
+    </div>
+        <input id="submit" type="button" value="Submit">
+      </form>
+
+    </div>
+    <img src='' id='image'/>
+    <div id="wrapper2"><h1>User Profile</h1>
+        
+    <div class="results" id="resultName">Name: </div>
+      <div class="results" id="resultEmail">e-mail: </div>
+      <div class="results" id="resultPhone">phone: </div>
+      <div class="results" id="resultFile"></div>
+      <div class="results" id="resultDate">Date of birth: </div>
+      <div class="results" id="resultGender">Gender: </div>
+      <div class="results" id="resultAddress">Address: </div>
+      <div class="results" id="resultCity">City: </div>
+      <div class="results" id="resultState">State: </div>
+      <div class="results" id="resultCountry">Country: </div>
+      <img src='' id='image'/>
+
+    </div>
+    <script> 
+const wrapper1=document.querySelector(".wrapper");
+const form=wrapper1.querySelectorAll('.form');
+const submitInput=form[0].querySelector('input[type="button"]');
+const resultsList=document.querySelectorAll(".results");
+const wrapper2=document.querySelector("#wrapper2");
+wrapper2.style.display="none";
+const formElem = document.getElementById('formElem');
+submitInput.addEventListener("click",(e)=>{
+    console.log(submitInput,"form");
+    e.preventDefault();
+    wrapper1.style.display="none";
+    wrapper2.style.display="block";
+
+    let image = document.getElementById('image');
+    let resultName = document.getElementById('resultName');
+    let resultEmail = document.getElementById('resultEmail');
+    let resultPhone = document.getElementById('resultPhone');
+    let resultDate = document.getElementById('resultDate');
+    let resultGender = document.getElementById('resultGender');
+    let resultAddress = document.getElementById('resultAddress');
+    let resultCity = document.getElementById('resultCity');
+    let resultState = document.getElementById('resultState');
+    let resultCountry = document.getElementById('resultCountry');
+
+
+
+
+    let formData=new FormData(formElem)
+
+    const name = formData.get('name');
+    const email = formData.get('email');
+    const phone = formData.get('phone');
+    const date = formData.get('date');
+    const gender = formData.get('gender');
+    const address = formData.get('address');
+    const city = formData.get('city');
+    const state = formData.get('state');
+    const country = formData.get('country');
+    let fileInput = formData.get("file");
+    const url = URL.createObjectURL(fileInput)
+    image.src = url
+    resultName.innerHTML+=name;
+    resultEmail.innerHTML+=email;
+    resultPhone.innerHTML+=phone;
+    resultDate.innerHTML+=date;
+    resultGender.innerHTML+=gender;
+    resultAddress.innerHTML+=address;
+    resultCity.innerHTML+=city;
+    resultState.innerHTML+=state;
+    resultCountry.innerHTML+=country;
+
+    console.log(url)
+    console.log(name, email,file)
+});
+
+</script>
+</body>
+</html>
